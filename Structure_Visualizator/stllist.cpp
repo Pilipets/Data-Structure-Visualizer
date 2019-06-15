@@ -5,9 +5,9 @@ StlList::StlList()
     StructureRepresentor::type = StructureRepresentor::Type::StlList;
 }
 
-void StlList::insert(int key, int data)
+void StlList::insert(int key, int value)
 {
-    m_list.emplace_front(key,data);
+    m_list.emplace_front(key,value);
 }
 
 void StlList::remove(int key)

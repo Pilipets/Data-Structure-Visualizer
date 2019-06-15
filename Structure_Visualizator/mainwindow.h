@@ -7,6 +7,7 @@ namespace Ui {
 class MainWindow;
 }
 
+class CoreFacade;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -18,6 +19,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
+    CoreFacade *core;
 };
 
 #endif // MAINWINDOW_H

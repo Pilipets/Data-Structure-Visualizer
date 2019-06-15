@@ -27,12 +27,14 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    stllist.cpp
+    stllist.cpp \
+    corefacade.cpp
 
 HEADERS += \
         mainwindow.h \
     structurerepresentor.h \
-    stllist.h
+    stllist.h \
+    corefacade.h
 
 FORMS += \
         mainwindow.ui
