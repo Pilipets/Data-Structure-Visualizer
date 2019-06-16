@@ -5,7 +5,12 @@
 #include <QDebug>
 #include "stllist.h"
 #include <QGraphicsPixmapItem>
-
+#include <QRandomGenerator>
+#include<vector>
+#include "stlmap.h"
+#include "myfactory.h"
+#include <QElapsedTimer>
+#include <QLineEdit>
 CoreFacade::CoreFacade()
 {
     v = QVector<QGraphicsView*>(2,nullptr);
@@ -18,6 +23,11 @@ CoreFacade::CoreFacade()
     drawer = new MyDrawer();
 
     drawer->setExePath("E:/Programs/graphviz-2.38/release/bin/dot.exe");
+
+    random = new QRandomGenerator();
+    factory = MyFactory::getInstance();
+
+    stopWatch = new QElapsedTimer;
 }
 
 CoreFacade::~CoreFacade()
@@ -25,12 +35,28 @@ CoreFacade::~CoreFacade()
     delete s[0];
     delete s[1];
     delete drawer;
+    delete random;
 }
 
 void CoreFacade::insertToActive(int key, int value)
 {
+    stopWatch->start();
     StructureRepresentor *Str = s[onStructureIndex];
     Str->insert(key, value);
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()));
+}
+
+void CoreFacade::insertRandomToActive(int amount)
+{
+    stopWatch->start();
+    std::vector<int> keys(amount),values(amount);
+    random->generate(keys.begin(), keys.end());
+    random->generate(values.begin(), values.end());
+
+    while(amount --> 0){
+        insertToActive(keys[amount-1],values[amount-1]);
+    }
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()));
 }
 
 void CoreFacade::drawActive()
@@ -67,3 +93,16 @@ void CoreFacade::setActive(QGraphicsView *view)
         onStructureIndex = index;
     }
 }
+
+void CoreFacade::clearActive()
+{
+    StructureRepresentor *Str = s[onStructureIndex];
+    Str->clear();
+}
+
+void CoreFacade::executeAction(const QString &iconText)
+{
+    delete s[onStructureIndex];
+    s[onStructureIndex] = factory->createEssence(iconText);
+}
+

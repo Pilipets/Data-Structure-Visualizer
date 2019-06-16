@@ -29,14 +29,19 @@ SOURCES += \
         mainwindow.cpp \
     stllist.cpp \
     corefacade.cpp \
-    drawer.cpp
+    drawer.cpp \
+    stlmap.cpp \
+    myfactory.cpp
 
 HEADERS += \
         mainwindow.h \
     structurerepresentor.h \
     stllist.h \
     corefacade.h \
-    drawer.h
+    drawer.h \
+    randomgenerator.h \
+    stlmap.h \
+    myfactory.h
 
 FORMS += \
         mainwindow.ui

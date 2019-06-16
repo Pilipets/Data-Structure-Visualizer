@@ -1,23 +1,22 @@
-#ifndef STLLIST_H
-#define STLLIST_H
+#ifndef STLMAP_H
+#define STLMAP_H
+
 #include "structurerepresentor.h"
-#include <list>
+#include <map>
 #include <utility>
 
-
-class StlList: public StructureRepresentor{
+class StlMap: public StructureRepresentor{
 private:
-    using List = std::list<std::pair<int,int>>;
+    using Map = std::map<int,int>;
 public:
-    StlList();
-    ~StlList();
+    StlMap();
+    ~StlMap() = default;
     void insert(int key, int value) override;
     void remove(int key) override;
     void clear() override;
     int find(int key) override;
     void writeToFile(const char *fileName) override;
 private:
-    List m_list;
+    Map m_map;
 };
-
-#endif // STLLIST_H
+#endif // STLMAP_H
