@@ -4,7 +4,8 @@
 MyDrawer::MyDrawer()
 {
     typedef StructureRepresentor::Type Type;
-    outputPath = {{(int)Type::StlList, "Output/StlList"},{(int)Type::StlVector, "Output/StlVector"}};
+    outputPath = {{(int)Type::StlList, "Output/StlList"},{(int)Type::StlVector, "Output/StlVector"},
+                  {(int)Type::SplayTree, "Output/SplayTree"}, {(int)Type::RBTree, "Output/RBTree"}};
 
     dir = QDir::current();
     if(!dir.exists("Output"))

@@ -5,12 +5,12 @@ StlMap::StlMap()
     StructureRepresentor::type = StructureRepresentor::Type::StlMap;
 }
 
-void StlMap::insert(int key, int value)
+void StlMap::insert(const int &key, const int &value)
 {
     m_map[key] = value;
 }
 
-void StlMap::remove(int key)
+void StlMap::remove(const int &key)
 {
     Map::const_iterator itr = m_map.find(key);
     if(itr != m_map.end()){
@@ -23,7 +23,7 @@ void StlMap::clear()
     m_map.clear();
 }
 
-int StlMap::find(int key)
+int StlMap::find(const int &key)
 {
     Map::const_iterator itr = m_map.find(key);
     if(itr != m_map.end()){

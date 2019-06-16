@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lineEdit_1->setText("StlList");
     connect(ui->actionStlList, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
     connect(ui->actionStlMap, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
+    connect(ui->actionSplayTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
+    connect(ui->actionRBTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
 }
 
 MainWindow::~MainWindow()
@@ -41,6 +43,9 @@ MainWindow::~MainWindow()
     disconnect(ui->randomInsertBtn, &QPushButton::clicked, this, &MainWindow::randomInsertBtn_clicked);
     disconnect(ui->clearBtn, &QPushButton::clicked, this, &MainWindow::clearBtn_clicked);
     disconnect(ui->actionStlList, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
+    disconnect(ui->actionStlMap, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
+    disconnect(ui->actionSplayTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
+    disconnect(ui->actionRBTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
 
     delete ui->graphicsView_0->scene();
     delete ui->graphicsView_1->scene();
@@ -70,6 +75,8 @@ void MainWindow::insertBtn_clicked()
 void MainWindow::randomInsertBtn_clicked()
 {
     int amount = QInputDialog::getInt(this,"Random Insertion","Enter amount");
+    if(amount == 0)
+        return;
     core->insertRandomToActive(amount);
     core->drawActive();
 }

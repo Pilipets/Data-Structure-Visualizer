@@ -10,7 +10,7 @@ StlList::StlList()
 StlList::~StlList()
 {}
 
-void StlList::insert(int key, int value)
+void StlList::insert(const int &key, const int &value)
 {
     List::iterator itr = std::find_if(m_list.begin(), m_list.end(),
                                         [key](const std::pair<int,int> &elem){
@@ -23,7 +23,7 @@ void StlList::insert(int key, int value)
 
 }
 
-void StlList::remove(int key)
+void StlList::remove(const int &key)
 {
     List::const_iterator itr = std::find_if(m_list.begin(), m_list.end(),
                                    [key](const std::pair<int,int> &elem){
@@ -38,7 +38,7 @@ void StlList::clear()
     m_list.clear();
 }
 
-int StlList::find(int key)
+int StlList::find(const int &key)
 {
     List::const_iterator itr = std::find_if(m_list.begin(), m_list.end(),
                                    [key](const std::pair<int,int> &elem){

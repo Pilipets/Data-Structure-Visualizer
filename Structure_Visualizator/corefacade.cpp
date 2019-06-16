@@ -43,7 +43,7 @@ void CoreFacade::insertToActive(int key, int value)
     stopWatch->start();
     StructureRepresentor *Str = s[onStructureIndex];
     Str->insert(key, value);
-    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()));
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
 }
 
 void CoreFacade::insertRandomToActive(int amount)
@@ -56,7 +56,7 @@ void CoreFacade::insertRandomToActive(int amount)
     while(amount --> 0){
         insertToActive(keys[amount-1],values[amount-1]);
     }
-    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()));
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
 }
 
 void CoreFacade::drawActive()
@@ -67,9 +67,10 @@ void CoreFacade::drawActive()
 
     QGraphicsScene *scene = view->scene();
     scene->clear();
-    scene->addItem(new QGraphicsPixmapItem(QPixmap::fromImage(image)));
-    //item->setPos( 0, 0 );
-    //view->fitInView(image.rect(),Qt::KeepAspectRatio);
+    QGraphicsItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+    scene->addItem(item);
+    item->setPos(0,0);
+    view->fitInView(image.rect(),Qt::KeepAspectRatio);
 
 }
 

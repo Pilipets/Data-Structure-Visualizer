@@ -185,9 +185,10 @@
      <property name="title">
       <string>New</string>
      </property>
-     <addaction name="actionStlVector"/>
      <addaction name="actionStlMap"/>
      <addaction name="actionStlList"/>
+     <addaction name="actionSplayTree"/>
+     <addaction name="actionRBTree"/>
     </widget>
     <addaction name="menuNew"/>
    </widget>
@@ -220,6 +221,16 @@
   <action name="actionStlList">
    <property name="text">
     <string>StlList</string>
+   </property>
+  </action>
+  <action name="actionSplayTree">
+   <property name="text">
+    <string>SplayTree</string>
+   </property>
+  </action>
+  <action name="actionRBTree">
+   <property name="text">
+    <string>RBTree</string>
    </property>
   </action>
  </widget>

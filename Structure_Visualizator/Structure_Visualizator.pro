@@ -31,7 +31,9 @@ SOURCES += \
     corefacade.cpp \
     drawer.cpp \
     stlmap.cpp \
-    myfactory.cpp
+    myfactory.cpp \
+    splaytree.cpp \
+    redblacktree.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +43,9 @@ HEADERS += \
     drawer.h \
     randomgenerator.h \
     stlmap.h \
-    myfactory.h
+    myfactory.h \
+    splaytree.h \
+    redblacktree.h
 
 FORMS += \
         mainwindow.ui
