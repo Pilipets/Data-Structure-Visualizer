@@ -15,6 +15,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    bool eventFilter(QObject *object, QEvent *event)override;
+
+private slots:
+    void insertBtn_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -14,65 +14,43 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>60</y>
-      <width>371</width>
-      <height>441</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_2">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>60</y>
-      <width>371</width>
-      <height>441</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="insertBtn">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>90</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Insert One</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="removeBtn">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>150</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="findBtn">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>230</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Find</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QGraphicsView" name="graphicsView_0"/>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QPushButton" name="insertBtn">
+          <property name="text">
+           <string>Insert One</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="findBtn">
+          <property name="text">
+           <string>Find</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removeBtn">
+          <property name="text">
+           <string>Remove</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QGraphicsView" name="graphicsView_1"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
