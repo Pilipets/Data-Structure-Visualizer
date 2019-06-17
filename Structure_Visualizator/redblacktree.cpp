@@ -283,8 +283,8 @@ Node* RB_Tree::_DeleteBST(Node* tree, Node* toDelete) {
         return tree;
 
     Node *temp = _Tree_Successor(tree->right);
-    root->key = temp->key;
-    root->value = temp->value;
+    tree->key = temp->key;
+    tree->value = temp->value;
     return _DeleteBST(tree->right, temp);
 }
 
@@ -297,7 +297,6 @@ RB_Tree::RB_Tree() : root(nullptr){
 RB_Tree::~RB_Tree()
 {
     this->clear();
-    this->root = nullptr;
 }
 
 int RB_Tree::find(const int & key)
@@ -369,8 +368,6 @@ void RB_Tree::writeToFile(const char *fileName)
 
 void RB_Tree::clear()
 {
-    return;
-
     if(this->isEmpty())
         return;
 
@@ -388,5 +385,6 @@ void RB_Tree::clear()
         delete temp;
         temp = nullptr;
     }
+    root = nullptr;
 }
 

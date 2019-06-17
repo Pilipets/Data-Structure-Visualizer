@@ -4,7 +4,9 @@
 #include "corefacade.h"
 #include <QPushButton>
 #include <QInputDialog>
-#include <QWheelEvent>
+#include "insertonedialog.h"
+#include <QDebug>
+#include<QMessageBox>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -16,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->insertBtn, &QPushButton::clicked, this, &MainWindow::insertBtn_clicked);
     connect(ui->randomInsertBtn, &QPushButton::clicked, this, &MainWindow::randomInsertBtn_clicked);
     connect(ui->clearBtn, &QPushButton::clicked, this, &MainWindow::clearBtn_clicked);
+    connect(ui->findBtn, &QPushButton::clicked, this, &MainWindow::findBtn_clicked);
+    connect(ui->removeBtn, &QPushButton::clicked, this, &MainWindow::removeBtn_clicked);
 
     ui->graphicsView_0->installEventFilter(this);
     ui->graphicsView_1->installEventFilter(this);
@@ -35,21 +39,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionStlMap, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
     connect(ui->actionSplayTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
     connect(ui->actionRBTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
+
+    insertWindow = new InsertOneDialog(this);
 }
 
 MainWindow::~MainWindow()
 {
-    disconnect(ui->insertBtn, &QPushButton::clicked, this, &MainWindow::insertBtn_clicked);
-    disconnect(ui->randomInsertBtn, &QPushButton::clicked, this, &MainWindow::randomInsertBtn_clicked);
-    disconnect(ui->clearBtn, &QPushButton::clicked, this, &MainWindow::clearBtn_clicked);
-    disconnect(ui->actionStlList, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
-    disconnect(ui->actionStlMap, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
-    disconnect(ui->actionSplayTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
-    disconnect(ui->actionRBTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
 
     delete ui->graphicsView_0->scene();
     delete ui->graphicsView_1->scene();
     delete ui;
+
+    delete insertWindow;
 }
 
 bool MainWindow::eventFilter(QObject *object, QEvent *event)
@@ -64,12 +65,20 @@ bool MainWindow::eventFilter(QObject *object, QEvent *event)
     }
 }
 
+void MainWindow::InsertDraw(const QString &key, const QString &value)
+{
+    core->insertToActive(key.toInt(),value.toInt());
+    core->drawActive();
+}
+
 
 void MainWindow::insertBtn_clicked()
 {
-    int key = QInputDialog::getInt(this,"Enter Key","Enter Key");
-    core->insertToActive(key,key);
-    core->drawActive();
+    insertWindow->open();
+
+    //int key = QInputDialog::getInt(this,"Enter Key","Enter Key");
+    //core->insertToActive(key,key);
+    //core->drawActive();
 }
 
 void MainWindow::randomInsertBtn_clicked()
@@ -99,4 +108,22 @@ void MainWindow::actionCreateStructure_clicked()
         ui->lineEdit_0->setText(action->iconText());
     else if(index == 1)
         ui->lineEdit_1->setText(action->iconText());
+}
+
+void MainWindow::findBtn_clicked()
+{
+    int key = QInputDialog::getInt(this,"Find by key","Enter Key");
+    int res = core->findInActive(key);
+    QMessageBox *output = new QMessageBox();
+    output->setText(QString::number(res));
+    output->exec();
+    delete output;
+    core->drawActive();
+}
+
+void MainWindow::removeBtn_clicked()
+{
+    int key = QInputDialog::getInt(this,"Remove by key","Enter Key");
+    core->removeFromActive(key);
+    core->drawActive();
 }

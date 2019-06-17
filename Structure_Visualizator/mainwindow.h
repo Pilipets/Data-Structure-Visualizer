@@ -17,16 +17,19 @@ public:
     ~MainWindow();
     bool eventFilter(QObject *object, QEvent *event) override;
 
-
+    void InsertDraw(const QString &key, const QString &value);
 private slots:
     void insertBtn_clicked();
     void randomInsertBtn_clicked();
     void clearBtn_clicked();
     void actionCreateStructure_clicked();
+    void findBtn_clicked();
+    void removeBtn_clicked();
 private:
     Ui::MainWindow *ui;
 
     CoreFacade *core;
+    QDialog *insertWindow;
 };
 
 #endif // MAINWINDOW_H

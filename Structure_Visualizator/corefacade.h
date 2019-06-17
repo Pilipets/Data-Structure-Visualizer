@@ -17,12 +17,14 @@ public:
     ~CoreFacade();
     void insertToActive(int key, int value);
     void insertRandomToActive(int amount);
+    int findInActive(const int & key);
     void drawActive();
     void setOutputWindow(QGraphicsView* view, int sIndex);
     void setActive(QGraphicsView *view);
     void clearActive();
     void executeAction(const QString& iconText);
     int activeElement(){return onStructureIndex; }
+    void removeFromActive(const int &key);
     QLineEdit *timeTxtBox;
 private:
     int onStructureIndex;

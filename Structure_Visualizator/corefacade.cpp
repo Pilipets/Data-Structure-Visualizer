@@ -59,6 +59,12 @@ void CoreFacade::insertRandomToActive(int amount)
     timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
 }
 
+int CoreFacade::findInActive(const int &key)
+{
+    StructureRepresentor *Str = s[onStructureIndex];
+    return Str->find(key);
+}
+
 void CoreFacade::drawActive()
 {
     StructureRepresentor *Str = s[onStructureIndex];
@@ -105,5 +111,11 @@ void CoreFacade::executeAction(const QString &iconText)
 {
     delete s[onStructureIndex];
     s[onStructureIndex] = factory->createEssence(iconText);
+}
+
+void CoreFacade::removeFromActive(const int &key)
+{
+    StructureRepresentor *Str = s[onStructureIndex];
+    Str->remove(key);
 }
 
