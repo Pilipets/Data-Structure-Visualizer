@@ -26,7 +26,7 @@ struct SplayNode
 };
 
 template<typename T, typename _Val>
-class Splay_Tree : public StructureRepresentor
+class SplayTree : public StructureRepresentor
 {
     using Node = SplayNode<T,_Val>;
 private:
@@ -46,8 +46,8 @@ private:
     void freeMemory(Node * root);
     Node* tree;
 public:
-    Splay_Tree();
-    ~Splay_Tree();
+    SplayTree();
+    ~SplayTree();
 
     bool isEmpty() override{return tree == nullptr; }
     void insert(const T &key, const _Val &value) override;
@@ -55,6 +55,7 @@ public:
     void clear() override;
     _Val find(const T &key) override;
     void writeToFile(const char *fileName) override;
+    const Node * data() const {return  tree; }
 };
 
 

@@ -1,6 +1,7 @@
 #ifndef STRUCTUREREPRESENTOR_H
 #define STRUCTUREREPRESENTOR_H
 #include<QString>
+//#include "structurevisitor.h"
 class StructureRepresentor{
 public:
     enum class Type : int{
@@ -13,6 +14,7 @@ public:
     virtual bool isEmpty() = 0;
     virtual void writeToFile(const char *fileName) = 0;
     inline int getType() {return (int)type;}
+    //virtual void accept(TreeVisitor &v) = 0;
 protected:
     Type type;
 };

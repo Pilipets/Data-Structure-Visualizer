@@ -17,8 +17,8 @@ StructureRepresentor *MyFactory::createEssence(const QString &name)
     else if(name == "StlMap")
         res = new StlMap;
     else if(name == "SplayTree")
-        res = new Splay_Tree<int,int>();
+        res = new SplayTree<int,int>;
     else if(name == "RBTree")
-        res = new Order_TreeMap<int,int>();
+        res = new RBTree<int,int>;
     return res;
 }

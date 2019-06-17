@@ -34,7 +34,8 @@ SOURCES += \
     myfactory.cpp \
     splaytree.cpp \
     insertonedialog.cpp \
-    rbtree.cpp
+    rbtree.cpp \
+    structurevisitor.cpp
 
 HEADERS += \
         mainwindow.h \

@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->clearBtn, &QPushButton::clicked, this, &MainWindow::clearBtn_clicked);
     connect(ui->findBtn, &QPushButton::clicked, this, &MainWindow::findBtn_clicked);
     connect(ui->removeBtn, &QPushButton::clicked, this, &MainWindow::removeBtn_clicked);
+    connect(ui->insersectBtn, &QPushButton::clicked, this, &MainWindow::intersectBtn_clicked);
+    connect(ui->unionBtn, &QPushButton::clicked, this, &MainWindow::unionBtn_clicked);
 
     ui->graphicsView_0->installEventFilter(this);
     ui->graphicsView_1->installEventFilter(this);
@@ -126,4 +128,14 @@ void MainWindow::removeBtn_clicked()
     int key = QInputDialog::getInt(this,"Remove by key","Enter Key");
     core->removeFromActive(key);
     core->drawActive();
+}
+
+void MainWindow::intersectBtn_clicked()
+{
+
+}
+
+void MainWindow::unionBtn_clicked()
+{
+
 }

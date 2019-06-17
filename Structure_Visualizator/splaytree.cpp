@@ -1,9 +1,9 @@
 #include "splaytree.h"
 
-template class Splay_Tree<int,int>;
+template class SplayTree<int,int>;
 
 template<typename T,class _Val>
-void Splay_Tree<T,_Val>::bst_print_dot_aux(Node * node, ofstream & fout)
+void SplayTree<T,_Val>::bst_print_dot_aux(Node * node, ofstream & fout)
 {
     if(!node){
         return;
@@ -29,7 +29,7 @@ void Splay_Tree<T,_Val>::bst_print_dot_aux(Node * node, ofstream & fout)
 //           / \       < - - - - - - - - -              / \
 //          T1  T2     Zag (Left Rotation)            T2   T3
 template<class T, class _Val>
-typename Splay_Tree<T, _Val>::Node* Splay_Tree<T, _Val>::rightRotate(Node *y)
+typename SplayTree<T, _Val>::Node* SplayTree<T, _Val>::rightRotate(Node *y)
 {
     Node *x = y->left;
     y->left = x->right;
@@ -44,7 +44,7 @@ typename Splay_Tree<T, _Val>::Node* Splay_Tree<T, _Val>::rightRotate(Node *y)
 //           / \       < - - - - - - - - -              / \
 //          T1  T2     Zag (Left Rotation)            T2   T3
 template<class T,class _Val>
-typename Splay_Tree<T,_Val>::Node* Splay_Tree<T,_Val>::leftRotate(Node *x)
+typename SplayTree<T,_Val>::Node* SplayTree<T,_Val>::leftRotate(Node *x)
 {
     Node *y = x->right;
     x->right = y->left;
@@ -56,7 +56,7 @@ typename Splay_Tree<T,_Val>::Node* Splay_Tree<T,_Val>::leftRotate(Node *x)
 // If key is not present, then it brings the last accessed item at
 // root.  This function modifies the tree and returns the new root
 template<class T,class _Val>
-typename Splay_Tree<T,_Val>::Node* Splay_Tree<T,_Val>::splay(Node *root, const T &key)
+typename SplayTree<T,_Val>::Node* SplayTree<T,_Val>::splay(Node *root, const T &key)
 {
     // Base cases: root is NULL or key is present at root
     if (root == nullptr || root->key == key)
@@ -121,14 +121,14 @@ typename Splay_Tree<T,_Val>::Node* Splay_Tree<T,_Val>::splay(Node *root, const T
 // returns the new root of Splay Tree.  If key is present in tree
 // then, it is moved to root.
 template<class T,class _Val>
-typename Splay_Tree<T,_Val>::Node* Splay_Tree<T,_Val>::search(Node *root, const T &key)
+typename SplayTree<T,_Val>::Node* SplayTree<T,_Val>::search(Node *root, const T &key)
 {
     return splay(root, key);
 }
 
 // Function to insert a new key k in splay tree with given root
 template<class T, class _Val>
-typename Splay_Tree<T,_Val>::Node* Splay_Tree<T,_Val>::insert(Node *root, const pair<T,_Val> &k)
+typename SplayTree<T,_Val>::Node* SplayTree<T,_Val>::insert(Node *root, const pair<T,_Val> &k)
 {
 
     // Simple Case: If tree is empty
@@ -168,7 +168,7 @@ typename Splay_Tree<T,_Val>::Node* Splay_Tree<T,_Val>::insert(Node *root, const 
 // The delete function for Splay tree. Note that this function
 // returns the new root of Splay Tree after removing the key
 template<class T, class _Val>
-typename Splay_Tree<T, _Val>::Node* Splay_Tree<T, _Val>::delete_key(Node *root, const T &key)
+typename SplayTree<T, _Val>::Node* SplayTree<T, _Val>::delete_key(Node *root, const T &key)
 {
     if (!root)
         return nullptr;
@@ -216,7 +216,7 @@ typename Splay_Tree<T, _Val>::Node* Splay_Tree<T, _Val>::delete_key(Node *root, 
     return root;
 }
 
-template<typename T, typename _Val> void Splay_Tree<T, _Val>::freeMemory(Node * root)
+template<typename T, typename _Val> void SplayTree<T, _Val>::freeMemory(Node * root)
 {
     if (!root)
         return;
@@ -228,18 +228,18 @@ template<typename T, typename _Val> void Splay_Tree<T, _Val>::freeMemory(Node * 
 }
 
 template<typename T, typename _Val>
-Splay_Tree<T,_Val>::Splay_Tree() : tree(nullptr)
+SplayTree<T,_Val>::SplayTree() : tree(nullptr)
 {
     StructureRepresentor::type = StructureRepresentor::Type::SplayTree;
 }
 
 
-template<typename T, typename _Val> Splay_Tree<T,_Val>:: ~Splay_Tree()
+template<typename T, typename _Val> SplayTree<T,_Val>:: ~SplayTree()
 {
     freeMemory(tree);
 }
 
-template<typename T, typename _Val> _Val Splay_Tree<T, _Val>::find(const T &key)
+template<typename T, typename _Val> _Val SplayTree<T, _Val>::find(const T &key)
 {
     tree = search(tree, key);
     if(tree->key == key)
@@ -248,24 +248,24 @@ template<typename T, typename _Val> _Val Splay_Tree<T, _Val>::find(const T &key)
         return _Val();
     }
 }
-template<typename T, typename _Val> void Splay_Tree<T, _Val>::insert(const T &key, const _Val &value)
+template<typename T, typename _Val> void SplayTree<T, _Val>::insert(const T &key, const _Val &value)
 {
     tree = insert(tree, std::make_pair(key,value));
 }
-template<typename T, typename _Val> void Splay_Tree<T, _Val>::remove(const T &key)
+template<typename T, typename _Val> void SplayTree<T, _Val>::remove(const T &key)
 {
     tree = delete_key(tree, key);
 }
 
 template<typename T, typename _Val>
-void Splay_Tree<T,_Val>::clear()
+void SplayTree<T,_Val>::clear()
 {
     freeMemory(tree);
     tree = nullptr;
 }
 
 template<typename T, typename _Val>
-void Splay_Tree<T,_Val>::writeToFile(const char * path)
+void SplayTree<T,_Val>::    writeToFile(const char * path)
 {
     ofstream fout(path);
 

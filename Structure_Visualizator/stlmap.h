@@ -17,6 +17,7 @@ public:
     int find(const int &key) override;
     bool isEmpty() override {return m_map.empty();}
     void writeToFile(const char *fileName) override;
+    const Map& data() const {return m_map;}
 private:
     Map m_map;
 };

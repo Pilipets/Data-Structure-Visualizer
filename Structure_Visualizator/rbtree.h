@@ -3,7 +3,7 @@
 #include<utility>
 #include "structurerepresentor.h"
 template<typename Key, typename T>
-class Order_TreeMap : public StructureRepresentor
+class RBTree : public StructureRepresentor
 {
 private:
     enum Color { RED, BLACK };
@@ -36,8 +36,8 @@ private:
     void _fixInsertRBTree(Node *x);
     void _InsertBST(Node* &tree, Node* toInsert);
 public:
-    Order_TreeMap();
-    ~Order_TreeMap();
+    RBTree();
+    ~RBTree();
 
     bool isEmpty() {return root == nil; }
     void insert(const Key & key, const T &val) override;

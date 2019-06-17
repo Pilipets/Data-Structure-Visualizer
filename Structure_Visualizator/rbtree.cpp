@@ -5,8 +5,8 @@
 #include<fstream>
 #include<queue>
 
-template class Order_TreeMap<int,int>;
-template<typename Key, typename T> void Order_TreeMap<Key, T>::_RotateLeft(Node * x)
+template class RBTree<int,int>;
+template<typename Key, typename T> void RBTree<Key, T>::_RotateLeft(Node * x)
 {
     Node* y = x->right;
 
@@ -28,7 +28,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::_RotateLeft(Node 
     y->size = x->size;
     x->size = x->left->size + x->right->size + 1;
 }
-template<typename Key, typename T> void Order_TreeMap<Key, T>::_RotateRight(Node * x)
+template<typename Key, typename T> void RBTree<Key, T>::_RotateRight(Node * x)
 {
     Node* y = x->left;
 
@@ -51,7 +51,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::_RotateRight(Node
     x->size = x->left->size + x->right->size + 1;
 }
 
-template<typename Key, typename T> void Order_TreeMap<Key, T>::_fixRank(Node * x)
+template<typename Key, typename T> void RBTree<Key, T>::_fixRank(Node * x)
 {
     Node* temp = x;
     while (temp != nil)
@@ -62,7 +62,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::_fixRank(Node * x
 }
 
 
-template<typename Key, typename T> void Order_TreeMap<Key, T>::_DeleteBST(Node * z)
+template<typename Key, typename T> void RBTree<Key, T>::_DeleteBST(Node * z)
 {
     Node *x, *y;
     //if (!z || z == nil) return;
@@ -101,7 +101,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::_DeleteBST(Node *
     delete y;
 }
 
-template<typename Key, typename T> void Order_TreeMap<Key, T>::_fixDeleteRBTree(Node * x)
+template<typename Key, typename T> void RBTree<Key, T>::_fixDeleteRBTree(Node * x)
 {
     //if (x == nullptr)return;
     while (x != root && x->color == BLACK)
@@ -175,7 +175,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::_fixDeleteRBTree(
 }
 
 template<typename Key, typename T>
-typename Order_TreeMap<Key, T>::Node * Order_TreeMap<Key, T>::_SearchBST(Node * tree, const Key &toSearch)
+typename RBTree<Key, T>::Node * RBTree<Key, T>::_SearchBST(Node * tree, const Key &toSearch)
 {
     Node* current = tree;
     while (current != nil)
@@ -188,7 +188,7 @@ typename Order_TreeMap<Key, T>::Node * Order_TreeMap<Key, T>::_SearchBST(Node * 
     return nullptr;
 }
 
-template<typename Key, typename T> void Order_TreeMap<Key, T>::_fixInsertRBTree(Node *x)
+template<typename Key, typename T> void RBTree<Key, T>::_fixInsertRBTree(Node *x)
 {
     while (x->parent->color == RED)
     {
@@ -242,7 +242,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::_fixInsertRBTree(
     root->color = BLACK;//first case
 }
 
-template<typename Key, typename T> void Order_TreeMap<Key, T>::_InsertBST(Node *& tree, Node * toInsert)
+template<typename Key, typename T> void RBTree<Key, T>::_InsertBST(Node *& tree, Node * toInsert)
 {
     Node *toInsert_parent = nil;
     Node *current = tree;
@@ -265,7 +265,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::_InsertBST(Node *
 
 
 // Function to insert a new node with given data
-template<typename Key, typename T> void Order_TreeMap<Key, T>::insert(const Key &key, const T &value)
+template<typename Key, typename T> void RBTree<Key, T>::insert(const Key &key, const T &value)
 {
     //insert node as leaf into right place, colour it red, invoke _fixInsertRBTree
     Node *pt = new Node(key,value);
@@ -279,7 +279,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::insert(const Key 
     // fix Red Black Tree violations
     _fixInsertRBTree(pt);
 }
-template<typename Key, typename T> void Order_TreeMap<Key, T>::remove(const Key &data)
+template<typename Key, typename T> void RBTree<Key, T>::remove(const Key &data)
 {
     Node *x = _SearchBST(root, data);
 
@@ -290,7 +290,7 @@ template<typename Key, typename T> void Order_TreeMap<Key, T>::remove(const Key 
 }
 
 template<typename Key, typename T>
-T Order_TreeMap<Key,T>::find(const Key &key)
+T RBTree<Key,T>::find(const Key &key)
 {
     Node *x = _SearchBST(root, key);
     if(x == nullptr)
@@ -301,7 +301,7 @@ T Order_TreeMap<Key,T>::find(const Key &key)
 }
 
 template<typename Key, typename T>
-void Order_TreeMap<Key,T>::clear()
+void RBTree<Key,T>::clear()
 {
     if(this->isEmpty())
         return;
@@ -324,7 +324,7 @@ void Order_TreeMap<Key,T>::clear()
 }
 
 template<typename Key, typename T>
-void Order_TreeMap<Key, T>::writeToFile(const char * fileName)
+void RBTree<Key, T>::writeToFile(const char * fileName)
 {
     std::ofstream fout(fileName);
     fout << "digraph{\nnode [shape=record,fontname=\"Arial\",style=filled,fontcolor=white,color=green];\n" << std::endl;
@@ -355,14 +355,14 @@ void Order_TreeMap<Key, T>::writeToFile(const char * fileName)
     fout << "}";
 }
 
-template<typename Key, typename T> Order_TreeMap<Key, T>::Order_TreeMap()
+template<typename Key, typename T> RBTree<Key, T>::RBTree()
 {
     root = nil;
     StructureRepresentor::type = StructureRepresentor::Type::RBTree;
 }
 
 template<typename Key, typename T>
-Order_TreeMap<Key, T>::~Order_TreeMap()
+RBTree<Key, T>::~RBTree()
 {
     this->clear();
 }
