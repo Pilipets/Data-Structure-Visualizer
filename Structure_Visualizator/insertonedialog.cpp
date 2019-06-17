@@ -19,7 +19,6 @@ void InsertOneDialog::insertBtn_clicked()
     QString key = ui->keyLine->text();
     QString value = ui->valueLine->text();
 
-
     MainWindow *w = qobject_cast<MainWindow*>(parent());
     w->InsertDraw(key,value);
 

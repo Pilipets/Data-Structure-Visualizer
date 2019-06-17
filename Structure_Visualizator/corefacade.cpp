@@ -61,8 +61,10 @@ void CoreFacade::insertRandomToActive(int amount)
 
 int CoreFacade::findInActive(const int &key)
 {
+    stopWatch->start();
     StructureRepresentor *Str = s[onStructureIndex];
     return Str->find(key);
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
 }
 
 void CoreFacade::drawActive()
@@ -103,19 +105,25 @@ void CoreFacade::setActive(QGraphicsView *view)
 
 void CoreFacade::clearActive()
 {
+    stopWatch->start();
     StructureRepresentor *Str = s[onStructureIndex];
     Str->clear();
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
 }
 
 void CoreFacade::executeAction(const QString &iconText)
 {
+    stopWatch->start();
     delete s[onStructureIndex];
     s[onStructureIndex] = factory->createEssence(iconText);
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
 }
 
 void CoreFacade::removeFromActive(const int &key)
 {
+    stopWatch->start();
     StructureRepresentor *Str = s[onStructureIndex];
     Str->remove(key);
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
 }
 

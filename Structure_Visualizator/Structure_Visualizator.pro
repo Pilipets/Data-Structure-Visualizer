@@ -33,9 +33,8 @@ SOURCES += \
     stlmap.cpp \
     myfactory.cpp \
     splaytree.cpp \
-    redblacktree.cpp \
     insertonedialog.cpp \
-    statisticrbtree.cpp
+    rbtree.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,9 +45,9 @@ HEADERS += \
     stlmap.h \
     myfactory.h \
     splaytree.h \
-    redblacktree.h \
     insertonedialog.h \
-    statisticrbtree.h
+    rbtree.h \
+    structurevisitor.h
 
 FORMS += \
         mainwindow.ui \

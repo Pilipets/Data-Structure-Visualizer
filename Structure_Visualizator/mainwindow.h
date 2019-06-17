@@ -25,6 +25,8 @@ private slots:
     void actionCreateStructure_clicked();
     void findBtn_clicked();
     void removeBtn_clicked();
+    void intersectBtn_clicked();
+    void unionBtn_clicked();
 private:
     Ui::MainWindow *ui;
 

@@ -7,6 +7,7 @@ namespace Ui {
 class InsertOneDialog;
 }
 
+class CoreFacade;
 class InsertOneDialog : public QDialog
 {
     Q_OBJECT

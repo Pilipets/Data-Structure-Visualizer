@@ -2,7 +2,7 @@
 #include "stllist.h"
 #include "stlmap.h"
 #include "splaytree.h"
-#include "redblacktree.h"
+#include "rbtree.h"
 MyFactory *MyFactory::getInstance()
 {
     static MyFactory factory;
@@ -19,6 +19,6 @@ StructureRepresentor *MyFactory::createEssence(const QString &name)
     else if(name == "SplayTree")
         res = new Splay_Tree<int,int>();
     else if(name == "RBTree")
-        res = new RB_Tree;
+        res = new Order_TreeMap<int,int>();
     return res;
 }
