@@ -18,6 +18,7 @@ public:
     bool isEmpty() override {return m_map.empty();}
     void writeToFile(const char *fileName) override;
     const Map& data() const {return m_map;}
+    void accept(MyVisitor<int,int> &v) override;
 private:
     Map m_map;
 };

@@ -51,3 +51,8 @@ void StlMap::writeToFile(const char *fileName)
 
     fout << "}";
 }
+
+void StlMap::accept(MyVisitor<int, int> &v)
+{
+    v.visit(this);
+}

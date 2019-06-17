@@ -18,6 +18,7 @@ public:
     bool isEmpty() override{return m_list.empty();}
     void writeToFile(const char *fileName) override;
     const List & data() const {return m_list; }
+    void accept(MyVisitor<int,int> &v) override;
 private:
     List m_list;
 };

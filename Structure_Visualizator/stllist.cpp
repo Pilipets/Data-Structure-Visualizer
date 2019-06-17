@@ -78,3 +78,8 @@ void StlList::writeToFile(const char *fileName)
     fout << "}";
 }
 
+void StlList::accept(MyVisitor<int, int> &v)
+{
+    v.visit(this);
+}
+

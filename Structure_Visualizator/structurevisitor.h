@@ -1,26 +1,31 @@
 #ifndef STRUCTUREVISITOR_H
 #define STRUCTUREVISITOR_H
 #include<vector>
-class RBTree;
-class SplayTree;
+
+template<class K, class V> class RBTree;
+template<class K, class V> class SplayTree;
 class StlList;
 class StlMap;
+
+template<class K, class V>
 class MyVisitor{
 public:
-    virtual void visit(RBTree *s) = 0;
-    virtual void visit(SplayTree *s) = 0;
+    virtual void visit(RBTree<K,V> *s) = 0;
+    virtual void visit(SplayTree<K,V> *s) = 0;
     virtual void visit(StlList * s) = 0;
     virtual void visit(StlMap * s) = 0;
     virtual ~MyVisitor() = default;
 };
 
-class GetItemsVisitor : public MyVisitor{
+template<class K, class V>
+class GetItemsVisitor : public MyVisitor<K,V>{
 public:
-    std::vector<int> keys, values;
+    std::vector<K> keys;
+    std::vector<V> values;
     size_t amount;
 public:
-    void visit(RBTree *s) override;
-    void visit(SplayTree *s) override;
+    void visit(RBTree<K,V> *s) override;
+    void visit(SplayTree<K,V> *s) override;
     void visit(StlList * s) override;
     void visit(StlMap * s) override;
 };

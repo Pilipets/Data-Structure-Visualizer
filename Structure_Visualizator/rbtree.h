@@ -5,8 +5,7 @@
 template<typename Key, typename T>
 class RBTree : public StructureRepresentor
 {
-private:
-    enum Color { RED, BLACK };
+public:
     struct Node
     {
         Key key;
@@ -21,9 +20,10 @@ private:
         Node(const Key &key, const T &val):Node(){
             this->key = key; this->value = val;
         }
-
     };
     Node* nil = new Node();
+private:
+    enum Color { RED, BLACK };
     Node *root;
 
     void _RotateLeft(Node* x);
@@ -45,6 +45,8 @@ public:
     T find(const Key & key) override;
     void clear() override;
     void writeToFile(const char *fileName) override;
+    const Node* data() const{return root;}
+    void accept(MyVisitor<Key,T> &v) override;
 };
 
 #endif // STATISTICRBTREE_H

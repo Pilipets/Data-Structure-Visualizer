@@ -56,6 +56,7 @@ public:
     _Val find(const T &key) override;
     void writeToFile(const char *fileName) override;
     const Node * data() const {return  tree; }
+    void accept(MyVisitor<T,_Val> &v) override;
 };
 
 

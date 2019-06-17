@@ -277,3 +277,9 @@ void SplayTree<T,_Val>::    writeToFile(const char * path)
     fout << "}\n";
     fout.close();
 }
+
+template<typename T, typename _Val>
+void SplayTree<T,_Val>::accept(MyVisitor<T, _Val> &v)
+{
+    v.visit(this);
+}

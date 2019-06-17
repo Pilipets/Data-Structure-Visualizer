@@ -355,6 +355,12 @@ void RBTree<Key, T>::writeToFile(const char * fileName)
     fout << "}";
 }
 
+template<typename Key, typename T>
+void RBTree<Key,T>::accept(MyVisitor<Key, T> &v)
+{
+    v.visit(this);
+}
+
 template<typename Key, typename T> RBTree<Key, T>::RBTree()
 {
     root = nil;

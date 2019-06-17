@@ -63,8 +63,9 @@ int CoreFacade::findInActive(const int &key)
 {
     stopWatch->start();
     StructureRepresentor *Str = s[onStructureIndex];
-    return Str->find(key);
+    int res = Str->find(key);
     timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
+    return res;
 }
 
 void CoreFacade::drawActive()
