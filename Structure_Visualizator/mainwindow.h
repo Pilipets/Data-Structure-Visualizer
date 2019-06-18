@@ -16,7 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     bool eventFilter(QObject *object, QEvent *event) override;
-
+    void wheelEvent(QWheelEvent *event) override;
     void InsertDraw(const QString &key, const QString &value);
 private slots:
     void insertBtn_clicked();

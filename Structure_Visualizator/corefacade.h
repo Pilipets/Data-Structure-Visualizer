@@ -27,6 +27,7 @@ public:
     void removeFromActive(const int &key);
     PropertiesDialog* getPropertiesActive();
     QLineEdit *timeTxtBox;
+    void scaleActive(int delta);
 private:
     int onStructureIndex;
     QVector<StructureRepresentor*> s;

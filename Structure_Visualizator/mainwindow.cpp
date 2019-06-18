@@ -9,7 +9,7 @@
 #include <QDialog>
 #include<QMessageBox>
 #include "propertiesdialog.h"
-
+#include <QWheelEvent>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -69,6 +69,12 @@ bool MainWindow::eventFilter(QObject *object, QEvent *event)
     else{
         return QMainWindow::eventFilter(object, event);
     }
+}
+
+void MainWindow::wheelEvent(QWheelEvent *event)
+{
+    core->scaleActive(event->delta());
+    event->accept();
 }
 
 void MainWindow::InsertDraw(const QString &key, const QString &value)

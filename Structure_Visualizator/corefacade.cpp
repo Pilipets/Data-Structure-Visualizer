@@ -141,3 +141,16 @@ PropertiesDialog* CoreFacade::getPropertiesActive()
     return dialog;
 }
 
+void CoreFacade::scaleActive(int delta)
+{
+    QGraphicsView *view = v[onStructureIndex];
+    view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+
+    double scaleFactor = 1.15;
+    if(delta > 0)
+        view->scale(scaleFactor,scaleFactor);
+    else {
+        view->scale(1.0/scaleFactor, 1.0/scaleFactor);
+    }
+}
+
