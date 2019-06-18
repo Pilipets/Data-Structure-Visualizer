@@ -35,7 +35,8 @@ SOURCES += \
     splaytree.cpp \
     insertonedialog.cpp \
     rbtree.cpp \
-    structurevisitor.cpp
+    structurevisitor.cpp \
+    propertiesdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,11 +49,13 @@ HEADERS += \
     splaytree.h \
     insertonedialog.h \
     rbtree.h \
-    structurevisitor.h
+    structurevisitor.h \
+    propertiesdialog.h
 
 FORMS += \
         mainwindow.ui \
-    insertonedialog.ui
+    insertonedialog.ui \
+    propertiesdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

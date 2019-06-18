@@ -6,7 +6,10 @@
 #include <QInputDialog>
 #include "insertonedialog.h"
 #include <QDebug>
+#include <QDialog>
 #include<QMessageBox>
+#include "propertiesdialog.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -20,8 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->clearBtn, &QPushButton::clicked, this, &MainWindow::clearBtn_clicked);
     connect(ui->findBtn, &QPushButton::clicked, this, &MainWindow::findBtn_clicked);
     connect(ui->removeBtn, &QPushButton::clicked, this, &MainWindow::removeBtn_clicked);
-    connect(ui->insersectBtn, &QPushButton::clicked, this, &MainWindow::intersectBtn_clicked);
-    connect(ui->unionBtn, &QPushButton::clicked, this, &MainWindow::unionBtn_clicked);
+    //connect(ui->insersectBtn, &QPushButton::clicked, this, &MainWindow::intersectBtn_clicked);
+    //connect(ui->unionBtn, &QPushButton::clicked, this, &MainWindow::unionBtn_clicked);
+    connect(ui->propertiesBtn, &QPushButton::clicked, this, &MainWindow::propertiesBtn_clicked);
 
     ui->graphicsView_0->installEventFilter(this);
     ui->graphicsView_1->installEventFilter(this);
@@ -138,4 +142,12 @@ void MainWindow::intersectBtn_clicked()
 void MainWindow::unionBtn_clicked()
 {
 
+}
+
+void MainWindow::propertiesBtn_clicked()
+{
+    QDialog* dialog = core->getPropertiesActive();
+    dialog->exec();
+
+    delete dialog;
 }

@@ -9,7 +9,7 @@ class MyFactory;
 class MyDrawer;
 class QElapsedTimer;
 class QLineEdit;
-
+class PropertiesDialog;
 class CoreFacade{
 private:
 public:
@@ -25,6 +25,7 @@ public:
     void executeAction(const QString& iconText);
     int activeElement(){return onStructureIndex; }
     void removeFromActive(const int &key);
+    PropertiesDialog* getPropertiesActive();
     QLineEdit *timeTxtBox;
 private:
     int onStructureIndex;

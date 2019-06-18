@@ -11,6 +11,7 @@
 #include "myfactory.h"
 #include <QElapsedTimer>
 #include <QLineEdit>
+#include "propertiesdialog.h"
 CoreFacade::CoreFacade()
 {
     v = QVector<QGraphicsView*>(2,nullptr);
@@ -126,5 +127,17 @@ void CoreFacade::removeFromActive(const int &key)
     StructureRepresentor *Str = s[onStructureIndex];
     Str->remove(key);
     timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
+}
+
+PropertiesDialog* CoreFacade::getPropertiesActive()
+{
+    stopWatch->start();
+    StructureRepresentor *Str = s[onStructureIndex];
+    GetItemsVisitor<int,int> v;
+    Str->accept(v);
+    PropertiesDialog *dialog = new PropertiesDialog();
+    dialog->setInfo(v);
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
+    return dialog;
 }
 

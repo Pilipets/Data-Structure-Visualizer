@@ -15,6 +15,7 @@ public:
     virtual void visit(StlList * s) = 0;
     virtual void visit(StlMap * s) = 0;
     virtual ~MyVisitor() = default;
+    MyVisitor() = default;
 };
 
 template<class K, class V>
@@ -23,6 +24,7 @@ public:
     std::vector<K> keys;
     std::vector<V> values;
     size_t amount;
+    GetItemsVisitor();
 public:
     void visit(RBTree<K,V> *s) override;
     void visit(SplayTree<K,V> *s) override;

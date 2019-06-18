@@ -27,6 +27,7 @@ private slots:
     void removeBtn_clicked();
     void intersectBtn_clicked();
     void unionBtn_clicked();
+    void propertiesBtn_clicked();
 private:
     Ui::MainWindow *ui;
 

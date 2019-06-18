@@ -9,6 +9,12 @@ template class GetItemsVisitor<int,int>;
 
 
 template<class K, class V>
+GetItemsVisitor<K,V>::GetItemsVisitor() : MyVisitor<K,V>()
+{
+
+}
+
+template<class K, class V>
 void GetItemsVisitor<K,V>::visit(RBTree<K, V> *s)
 {
     using Node = typename RBTree<K,V>::Node;
@@ -21,8 +27,8 @@ void GetItemsVisitor<K,V>::visit(RBTree<K, V> *s)
         while (!q.empty())
         {
             const Node *temp = q.front();
-            keys[amount] = temp->key;
-            values[amount] = temp->value;
+            keys.push_back(temp->key);
+            values.push_back(temp->value);
             amount += 1;
             q.pop();
 
@@ -48,8 +54,8 @@ void GetItemsVisitor<K,V>::visit(SplayTree<K,V> *s)
         while (!q.empty())
         {
             const Node *temp = q.front();
-            keys[amount] = temp->key;
-            values[amount] = temp->value;
+            keys.push_back(temp->key);
+            values.push_back(temp->value);
             amount += 1;
             q.pop();
 
