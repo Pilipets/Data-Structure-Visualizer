@@ -22,7 +22,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-CONFIG += c++1z
+CONFIG += c++14
 
 SOURCES += \
         main.cpp \
@@ -39,7 +39,8 @@ SOURCES += \
     propertiesdialog.cpp \
     setalgorithms.cpp \
     setoperationsdialog.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    myrandom.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -56,7 +57,8 @@ HEADERS += \
     propertiesdialog.h \
     setalgorithms.h \
     setoperationsdialog.h \
-    settingsdialog.h
+    settingsdialog.h \
+    myrandom.h
 
 FORMS += \
         mainwindow.ui \

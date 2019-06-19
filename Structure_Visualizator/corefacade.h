@@ -12,7 +12,7 @@ class PropertiesDialog;
 class SetOperationsDialog;
 class SetAlgorithms;
 class SettingsDialog;
-
+class MyRandom;
 class CoreFacade{
 private:
 public:

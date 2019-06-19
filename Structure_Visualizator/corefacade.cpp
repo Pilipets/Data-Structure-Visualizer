@@ -17,6 +17,7 @@
 #include "settingsdialog.h"
 #include<QMessageBox>
 #include <QFileDialog>
+#include "myrandom.h"
 CoreFacade::CoreFacade()
 {
     factory = MyFactory::getInstance();
@@ -61,8 +62,8 @@ void CoreFacade::insertRandomToActive(int amount)
 {
     stopWatch->start();
     std::vector<int> keys(amount),values(amount);
-    random->generate(keys.begin(), keys.end());
-    random->generate(values.begin(), values.end());
+    std::generate(keys.begin(), keys.end(), [=]() { return random->bounded(-500,500);});
+    std::generate(values.begin(), values.end(), [=]() { return random->bounded(-500,500);});
 
     while(amount --> 0){
         insertToActive(keys[amount-1],values[amount-1]);
@@ -166,6 +167,7 @@ void CoreFacade::scaleActive(int delta)
 
 SetOperationsDialog *CoreFacade::getSetOperationResult(int operationType)
 {
+    stopWatch->start();
     StructureRepresentor *s1 = s[onStructureIndex];
     StructureRepresentor *s2 = onStructureIndex == 0 ? s[1] : s[0];
     SetAlgorithms::OperationType option = static_cast<SetAlgorithms::OperationType>(operationType);
@@ -195,6 +197,7 @@ SetOperationsDialog *CoreFacade::getSetOperationResult(int operationType)
     if(res)
         image = drawer->createImage(res);
     dialog->setProperties(image,title);
+    timeTxtBox->setText(QString::number(stopWatch->nsecsElapsed()) + " nanoSeconds");
     return dialog;
 }
 
