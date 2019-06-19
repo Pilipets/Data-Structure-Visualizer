@@ -138,7 +138,10 @@ typename SplayTree<T,_Val>::Node* SplayTree<T,_Val>::insert(Node *root, const pa
     root = splay(root, k.first);
 
     // If key is already present, then return
-    if (root->key == k.first) return root;
+    if (root->key == k.first){
+        root->value = k.second;
+        return root;
+    }
 
     // Otherwise allocate memory for new node
     Node *newnode = new Node(k);

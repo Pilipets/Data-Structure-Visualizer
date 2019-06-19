@@ -247,28 +247,38 @@ template<typename Key, typename T> void RBTree<Key, T>::_InsertBST(Node *& tree,
     Node *toInsert_parent = nil;
     Node *current = tree;
 
-    while (current != nil || current->key == toInsert->key)
+    while (current != nil && current->key != toInsert->key)
     {
         toInsert_parent = current;
         current->size += 1;
-        current = (toInsert->key < current->key) ? current->left : current->right;
+        if(toInsert->key < current->key)
+            current = current->left;
+        else if(toInsert->key > current->key)
+            current = current->right;
+        else{
+            break;
+        }
     }
     toInsert->parent = toInsert_parent;
-
     if (toInsert_parent == nil)
         tree = toInsert;
-    else if (toInsert->key < toInsert_parent->key)
+    else if (toInsert->key < toInsert_parent->key){
         toInsert_parent->left = toInsert;
-    else
+    }
+    else{
         toInsert_parent->right = toInsert;
+    }
+    if(current != nil){
+        toInsert->left = current->left, toInsert->right = current->right;
+        toInsert->color = current->color, toInsert->size = current->size;
+        delete current;
+    }
 }
 
 
 // Function to insert a new node with given data
 template<typename Key, typename T> void RBTree<Key, T>::insert(const Key &key, const T &value)
 {
-    if(find(key) != Key())
-        return;
     //insert node as leaf into right place, colour it red, invoke _fixInsertRBTree
     Node *pt = new Node(key,value);
     pt->color = RED;
