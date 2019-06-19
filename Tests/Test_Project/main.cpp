@@ -7,11 +7,11 @@
 #include "structurevisitor.h"
 using std::vector;
 typedef StructureRepresentor* Str;
-const int Amount = 500;
+const size_t Amount = 500;
 
 void fillVectorDifferent(vector<int> &vec,const int& amount)
 {
-    for(int i = 0; i < amount; i++)
+    for(size_t i = 0; i < amount; i++)
     {
         int a = QRandomGenerator::global()->bounded(-500,500);
         auto it = find_if(vec.begin(),vec.end(),[a](const int& elem){return a == elem;});
@@ -37,6 +37,7 @@ std::tuple<Str,Str,Str,Str> Initialization(const vector<int> &keys, const vector
         s3->insert(keys[i],values[i]);
         s4->insert(keys[i],values[i]);
     }
+    return std::make_tuple(s1,s2,s3,s4);
 }
 void CleanUp(Str s1, Str s2, Str s3, Str s4){
     delete s1; delete s2; delete s3; delete s4;
@@ -51,7 +52,7 @@ TEST(AlgorithmsTest,Insert_Find_methods)
 
     auto [s1,s2,s3,s4] = Initialization(keys,values);
 
-    for(int i = 0; i < Amount;i++)
+    for(size_t i = 0; i < Amount;i++)
     {
         EXPECT_EQ(s1->find(keys[i]),values[i]);
         EXPECT_EQ(s2->find(keys[i]),values[i]);
@@ -71,21 +72,21 @@ TEST(AlgorithmsTest,Random_Insert_Find_RemoveMethods)
 
     auto [s1,s2,s3,s4] = Initialization(keys,values);
 
-    for(int i = 0; i < Amount/2;i++)
+    for(size_t i = 0; i < Amount/2;i++)
     {
         s1->remove(keys[i]);
         s2->remove(keys[i]);
         s3->remove(keys[i]);
         s4->remove(keys[i]);
     }
-    for(int i = 0; i < Amount/2;i++)
+    for(size_t i = 0; i < Amount/2;i++)
     {
         EXPECT_EQ(s1->find(keys[i]),int());
         EXPECT_EQ(s2->find(keys[i]),int());
         EXPECT_EQ(s3->find(keys[i]),int());
         EXPECT_EQ(s4->find(keys[i]),int());
     }
-    for(int i = Amount/2; i < Amount;i++)
+    for(size_t i = Amount/2; i < Amount;i++)
     {
         EXPECT_EQ(s1->find(keys[i]),values[i]);
         EXPECT_EQ(s2->find(keys[i]),values[i]);
