@@ -13,10 +13,13 @@ private:
     void saveIntersection(StructureRepresentor *s, StructureRepresentor* s1, StructureRepresentor *s2);
     template<class K,class V>
     void saveUnion(StructureRepresentor *s, StructureRepresentor* s1, StructureRepresentor *s2);
+    template<class K,class V>
+    void saveDifference(StructureRepresentor *s, StructureRepresentor *s1, StructureRepresentor *s2);
 public:
     enum class OperationType: int{Intersection, Union, Difference};
     StructureRepresentor *getIntersection(StructureRepresentor* s1, StructureRepresentor *s2);
     StructureRepresentor *getUnion(StructureRepresentor* s1, StructureRepresentor *s2);
+    StructureRepresentor *getDifference(StructureRepresentor* s1, StructureRepresentor *s2);
 };
 
 

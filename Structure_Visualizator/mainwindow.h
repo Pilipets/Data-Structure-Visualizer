@@ -28,6 +28,9 @@ private slots:
     void intersectBtn_clicked();
     void unionBtn_clicked();
     void propertiesBtn_clicked();
+    void menuSettings_clicked();
+    void slotSaveSettings();
+    void diffBtn_clicked();
 private:
     Ui::MainWindow *ui;
 

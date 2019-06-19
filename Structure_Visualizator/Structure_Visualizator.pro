@@ -38,7 +38,8 @@ SOURCES += \
     structurevisitor.cpp \
     propertiesdialog.cpp \
     setalgorithms.cpp \
-    setoperationsdialog.cpp
+    setoperationsdialog.cpp \
+    settingsdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,13 +55,15 @@ HEADERS += \
     structurevisitor.h \
     propertiesdialog.h \
     setalgorithms.h \
-    setoperationsdialog.h
+    setoperationsdialog.h \
+    settingsdialog.h
 
 FORMS += \
         mainwindow.ui \
     insertonedialog.ui \
     propertiesdialog.ui \
-    setoperationsdialog.ui
+    setoperationsdialog.ui \
+    settingsdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

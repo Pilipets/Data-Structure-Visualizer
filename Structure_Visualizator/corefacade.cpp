@@ -14,6 +14,7 @@
 #include "propertiesdialog.h"
 #include "setoperationsdialog.h"
 #include "setalgorithms.h"
+#include "settingsdialog.h"
 CoreFacade::CoreFacade()
 {
     factory = MyFactory::getInstance();
@@ -32,6 +33,7 @@ CoreFacade::CoreFacade()
 
     stopWatch = new QElapsedTimer;
     setStrategy = new SetAlgorithms();
+    settingsWindow = new SettingsDialog();
 }
 
 CoreFacade::~CoreFacade()
@@ -40,6 +42,9 @@ CoreFacade::~CoreFacade()
     delete s[1];
     delete drawer;
     delete random;
+    delete stopWatch;
+    delete setStrategy;
+    delete settingsWindow;
 }
 
 void CoreFacade::insertToActive(int key, int value)
@@ -174,6 +179,10 @@ SetOperationsDialog *CoreFacade::getSetOperationResult(int operationType)
         res = setStrategy->getIntersection(s1,s2);
         title = "Intersection operation result";
         break;
+    case SetAlgorithms::OperationType::Difference:
+        res = setStrategy->getDifference(s1,s2);
+        title = "Difference operation result";
+        break;
     default:
         res = nullptr;
         title = "Unknown operation type";
@@ -185,5 +194,15 @@ SetOperationsDialog *CoreFacade::getSetOperationResult(int operationType)
         image = drawer->createImage(res);
     dialog->setProperties(image,title);
     return dialog;
+}
+
+SettingsDialog* CoreFacade::getSettingsWindow()
+{
+    return settingsWindow;
+}
+
+void CoreFacade::saveSettingsWindow()
+{
+    drawer->setExePath(settingsWindow->graphVizPath().toStdString().c_str());
 }
 

@@ -11,6 +11,7 @@ class QLineEdit;
 class PropertiesDialog;
 class SetOperationsDialog;
 class SetAlgorithms;
+class SettingsDialog;
 
 class CoreFacade{
 private:
@@ -31,6 +32,8 @@ public:
     QLineEdit *timeTxtBox;
     void scaleActive(int delta);
     SetOperationsDialog *getSetOperationResult(int operationType);
+    SettingsDialog* getSettingsWindow();
+    void saveSettingsWindow();
 private:
     int onStructureIndex;
     QVector<StructureRepresentor*> s;
@@ -39,6 +42,7 @@ private:
     QRandomGenerator *random;
     MyFactory *factory;
 
+    SettingsDialog *settingsWindow;
     QElapsedTimer* stopWatch;
     SetAlgorithms *setStrategy;
 };

@@ -12,6 +12,7 @@
 #include <QWheelEvent>
 #include "setalgorithms.h"
 #include "setoperationsdialog.h"
+#include "settingsdialog.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->removeBtn, &QPushButton::clicked, this, &MainWindow::removeBtn_clicked);
     connect(ui->insersectBtn, &QPushButton::clicked, this, &MainWindow::intersectBtn_clicked);
     connect(ui->unionBtn, &QPushButton::clicked, this, &MainWindow::unionBtn_clicked);
+    connect(ui->diffBtn, &QPushButton::clicked, this, &MainWindow::diffBtn_clicked);
     connect(ui->propertiesBtn, &QPushButton::clicked, this, &MainWindow::propertiesBtn_clicked);
 
     ui->graphicsView_0->installEventFilter(this);
@@ -47,8 +49,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionStlMap, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
     connect(ui->actionSplayTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
     connect(ui->actionRBTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
+    connect(ui->menuSettings, &QMenu::triggered, this, &MainWindow::menuSettings_clicked);
 
     insertWindow = new InsertOneDialog(this);
+
+    connect(core->getSettingsWindow(),&SettingsDialog::saveSettings,this,&MainWindow::slotSaveSettings);
 }
 
 MainWindow::~MainWindow()
@@ -161,5 +166,27 @@ void MainWindow::propertiesBtn_clicked()
     QDialog* dialog = core->getPropertiesActive();
     dialog->exec();
 
+    delete dialog;
+}
+
+void MainWindow::menuSettings_clicked()
+{
+    qDebug() << "Setting clicked";
+    QDialog* dialog = core->getSettingsWindow();
+    dialog->open();
+}
+
+void MainWindow::slotSaveSettings()
+{
+    core->saveSettingsWindow();
+    QDialog* dialog = core->getSettingsWindow();
+    dialog->close();
+
+}
+
+void MainWindow::diffBtn_clicked()
+{
+    QDialog* dialog = qobject_cast<QDialog*>(core->getSetOperationResult((int)SetAlgorithms::OperationType::Difference));
+    dialog->exec();
     delete dialog;
 }
