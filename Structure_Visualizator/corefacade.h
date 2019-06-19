@@ -35,6 +35,7 @@ public:
     SettingsDialog* getSettingsWindow();
     void saveSettingsWindow();
 private:
+    QString vizPath;
     int onStructureIndex;
     QVector<StructureRepresentor*> s;
     QVector<QGraphicsView*> v;

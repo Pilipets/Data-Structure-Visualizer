@@ -6,6 +6,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+    connect(ui->saveBtn, &QPushButton::clicked, this, &SettingsDialog::saveSettings);
 }
 
 SettingsDialog::~SettingsDialog()
@@ -13,12 +14,12 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-QString SettingsDialog::graphVizPath() const
+QString SettingsDialog::getPath() const
 {
     return ui->graphVizLineEdit->text();
 }
 
-void SettingsDialog::on_saveBtn_clicked()
+void SettingsDialog::setPath(const QString &path)
 {
-    emit saveSettings();
+    ui->graphVizLineEdit->setText(path);
 }

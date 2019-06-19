@@ -15,6 +15,8 @@
 #include "setoperationsdialog.h"
 #include "setalgorithms.h"
 #include "settingsdialog.h"
+#include<QMessageBox>
+#include <QFileDialog>
 CoreFacade::CoreFacade()
 {
     factory = MyFactory::getInstance();
@@ -26,7 +28,7 @@ CoreFacade::CoreFacade()
     s[0] = factory->createEssence("StlList");
     s[1] = factory->createEssence("StlList");
     drawer = new MyDrawer();
-
+    vizPath = "E:/Programs/graphviz-2.38/release/bin/dot.exe";
     drawer->setExePath("E:/Programs/graphviz-2.38/release/bin/dot.exe");
 
     random = new QRandomGenerator();
@@ -198,11 +200,13 @@ SetOperationsDialog *CoreFacade::getSetOperationResult(int operationType)
 
 SettingsDialog* CoreFacade::getSettingsWindow()
 {
+    settingsWindow->setPath(vizPath);
     return settingsWindow;
 }
 
 void CoreFacade::saveSettingsWindow()
 {
-    drawer->setExePath(settingsWindow->graphVizPath().toStdString().c_str());
+    vizPath = settingsWindow->getPath();
+    drawer->setExePath(vizPath.toStdString().c_str());
 }
 

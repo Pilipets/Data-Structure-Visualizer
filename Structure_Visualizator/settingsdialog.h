@@ -15,13 +15,15 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog();
 
-    QString graphVizPath() const;
+    void setPath(const QString &path);
+    QString getPath() const;
 signals:
     void saveSettings();
 private slots:
     void on_saveBtn_clicked();
 
 private:
+
     Ui::SettingsDialog *ui;
 };
 

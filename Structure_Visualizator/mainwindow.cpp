@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionStlMap, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
     connect(ui->actionSplayTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
     connect(ui->actionRBTree, &QAction::triggered, this, &MainWindow::actionCreateStructure_clicked);
-    connect(ui->menuSettings, &QMenu::triggered, this, &MainWindow::menuSettings_clicked);
+    connect(ui->menuSettings, &QMenu::aboutToShow, this, &MainWindow::menuSettings_clicked);
 
     insertWindow = new InsertOneDialog(this);
 
@@ -171,7 +171,7 @@ void MainWindow::propertiesBtn_clicked()
 
 void MainWindow::menuSettings_clicked()
 {
-    qDebug() << "Setting clicked";
+    qDebug() << "Settings clicked";
     QDialog* dialog = core->getSettingsWindow();
     dialog->open();
 }
