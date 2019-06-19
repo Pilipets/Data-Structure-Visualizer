@@ -2,7 +2,6 @@
 #define COREFACADE_H
 #include<QGraphicsView>
 #include<QVector>
-
 class QRandomGenerator;
 class StructureRepresentor;
 class MyFactory;
@@ -10,6 +9,9 @@ class MyDrawer;
 class QElapsedTimer;
 class QLineEdit;
 class PropertiesDialog;
+class SetOperationsDialog;
+class SetAlgorithms;
+
 class CoreFacade{
 private:
 public:
@@ -28,6 +30,7 @@ public:
     PropertiesDialog* getPropertiesActive();
     QLineEdit *timeTxtBox;
     void scaleActive(int delta);
+    SetOperationsDialog *getSetOperationResult(int operationType);
 private:
     int onStructureIndex;
     QVector<StructureRepresentor*> s;
@@ -37,6 +40,7 @@ private:
     MyFactory *factory;
 
     QElapsedTimer* stopWatch;
+    SetAlgorithms *setStrategy;
 };
 
 #endif // COREFACADE_H

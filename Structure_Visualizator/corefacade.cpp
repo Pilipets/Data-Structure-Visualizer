@@ -12,23 +12,26 @@
 #include <QElapsedTimer>
 #include <QLineEdit>
 #include "propertiesdialog.h"
+#include "setoperationsdialog.h"
+#include "setalgorithms.h"
 CoreFacade::CoreFacade()
 {
+    factory = MyFactory::getInstance();
     v = QVector<QGraphicsView*>(2,nullptr);
-    s = QVector<StructureRepresentor*>(2);
+    s = QVector<StructureRepresentor*>(2,nullptr);
 
     onStructureIndex = -1;
 
-    s[0] = new StlList();
-    s[1] = new StlList();
+    s[0] = factory->createEssence("StlList");
+    s[1] = factory->createEssence("StlList");
     drawer = new MyDrawer();
 
     drawer->setExePath("E:/Programs/graphviz-2.38/release/bin/dot.exe");
 
     random = new QRandomGenerator();
-    factory = MyFactory::getInstance();
 
     stopWatch = new QElapsedTimer;
+    setStrategy = new SetAlgorithms();
 }
 
 CoreFacade::~CoreFacade()
@@ -152,5 +155,35 @@ void CoreFacade::scaleActive(int delta)
     else {
         view->scale(1.0/scaleFactor, 1.0/scaleFactor);
     }
+}
+
+SetOperationsDialog *CoreFacade::getSetOperationResult(int operationType)
+{
+    StructureRepresentor *s1 = s[onStructureIndex];
+    StructureRepresentor *s2 = onStructureIndex == 0 ? s[1] : s[0];
+    SetAlgorithms::OperationType option = static_cast<SetAlgorithms::OperationType>(operationType);
+
+    StructureRepresentor *res = nullptr;
+    QString title;
+    switch (option) {
+    case SetAlgorithms::OperationType::Union:
+        res = setStrategy->getUnion(s1,s2);
+        title = "Union operation result";
+        break;
+    case SetAlgorithms::OperationType::Intersection:
+        res = setStrategy->getIntersection(s1,s2);
+        title = "Intersection operation result";
+        break;
+    default:
+        res = nullptr;
+        title = "Unknown operation type";
+        break;
+    }
+    SetOperationsDialog* dialog = new SetOperationsDialog;
+    QImage image;
+    if(res)
+        image = drawer->createImage(res);
+    dialog->setProperties(image,title);
+    return dialog;
 }
 

@@ -9,6 +9,7 @@ private:
 public:
     static MyFactory *getInstance();
     StructureRepresentor *createEssence(const QString& name);
+    StructureRepresentor *createEssence(StructureRepresentor *s);
 };
 
 #endif // MYFACTORY_H
