@@ -19,8 +19,6 @@ public:
     QString getPath() const;
 signals:
     void saveSettings();
-private slots:
-    void on_saveBtn_clicked();
 
 private:
 
